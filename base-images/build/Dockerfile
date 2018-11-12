@@ -10,7 +10,7 @@ RUN git clone --depth=1 git://git.osdn.net/gitroot/android-x86/system-core.git -
 
 FROM ubuntu:xenial
 RUN apt-get update \
-&& apt-get install -y android-libcutils-dev \
+&& apt-get install -y android-libcutils-dev util-linux udisks2 grub2-common grub-pc-bin qemu-utils \
 && rm -rf /var/lib/apt/lists
 
 COPY --from=build /usr/local/bin/mkbootfs /usr/local/bin/
