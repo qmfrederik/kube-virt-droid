@@ -18,7 +18,7 @@ docker-ramdisk: ramdisk/ramdisk.tar
 	( cd ramdisk && sudo docker build . -t ${TAG_PREFIX}-ramdisk:${TAG_SUFFIX} )
 
 obj/system.img:
-	[ -f ${LIVECD} ] || wget ${ISO_URL}
+	[ -f ${LIVECD} ] || wget -nv -nc ${ISO_URL}
 
 	[ -d obj/iso ] || mkdir -p obj/iso
 	sudo mount -o loop ${LIVECD} obj/iso
