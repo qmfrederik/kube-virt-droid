@@ -1,5 +1,7 @@
-before_install:
-- apt-get install -y squashfs-tools
+addons:
+  apt:
+    packages:
+    - squashfs-tools
 
 script:
 - cd base-images
