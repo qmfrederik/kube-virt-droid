@@ -1,0 +1,7 @@
+*.iso
+*.img
+*.sfs
+initrd/
+ramdisk/
+system/
+kernel
