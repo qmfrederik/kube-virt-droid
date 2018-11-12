@@ -3,15 +3,18 @@ addons:
     packages:
     - squashfs-tools
 
+matrix:
+  include:
+  - ISO_URL="https://osdn.net/dl/android-x86/android-x86_64-8.1-rc2.iso" TAG_SUFFIX="8.1-rc" LIVECD="android-x86_64-8.1-rc2.iso"
+  - ISO_URL="https://osdn.net/dl/android-x86/android-x86_64-7.1-r2.iso"  TAG_SUFFIX="7.2-r2" LIVECD="android-x86_64-7.1-r2.iso"
+
 script:
 - cd base-images
-- make
+- make ISO_URL=$ISO_URL TAG_SUFFIX=$TAG_SUFFIX LIVECD=$LIVECD
 
 after_success:
 - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-- docker push quamotion/android-x86-kernel:7.1-r2
-- docker push quamotion/android-x86-initrd:7.1-r2
-- docker push quamotion/android-x86-ramdisk:7.1-r2
-- docker push quamotion/android-x86-system:7.1-r2
-- docker push quamotion/android-x86-build:latest
-
+- docker push quamotion/android-x86-kernel:$TAG_SUFFIX
+- docker push quamotion/android-x86-initrd:$TAG_SUFFIX
+- docker push quamotion/android-x86-ramdisk:$TAG_SUFFIX
+- docker push quamotion/android-x86-system:$TAG_SUFFIX
