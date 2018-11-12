@@ -1,0 +1,12 @@
+script:
+- cd base-images
+- make
+
+after_success:
+- docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+- docker push quamotion/android-x86-kernel:7.1-r2
+- docker push quamotion/android-x86-initrd:7.1-r2
+- docker push quamotion/android-x86-ramdisk:7.1-r2
+- docker push quamotion/android-x86-system:7.1-r2
+- docker push quamotion/android-x86-build:latest
+
